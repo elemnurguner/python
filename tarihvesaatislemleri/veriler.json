@@ -1,0 +1,7 @@
+[
+    {"isim": "Ali", "yas": 25, "sehir": "İstanbul"},
+    {"isim": "Ayşe", "yas": 30, "sehir": "Ankara"},
+    {"isim": "Mehmet", "yas": 22, "sehir": "İzmir"},
+    {"isim": "Zeynep", "yas": 28, "sehir": "Bursa"},
+    {"isim": "Ahmet", "yas": 35, "sehir": "Antalya"}
+]

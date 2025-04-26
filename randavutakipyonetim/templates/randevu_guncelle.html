@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Randevu Güncelle</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Randevu Güncelle</h1>
+        <form method="POST">
+            <div class="mb-3">
+                <label for="kullanici_adi" class="form-label">Kullanıcı Adı</label>
+                <input type="text" class="form-control" id="kullanici_adi" name="kullanici_adi" value="{{ randevu.kullanici_adi }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="tarih" class="form-label">Tarih</label>
+                <input type="date" class="form-control" id="tarih" name="tarih" value="{{ randevu.tarih }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="saat" class="form-label">Saat</label>
+                <input type="time" class="form-control" id="saat" name="saat" value="{{ randevu.saat }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="aciklama" class="form-label">Açıklama</label>
+                <textarea class="form-control" id="aciklama" name="aciklama" rows="3">{{ randevu.aciklama }}</textarea>
+            </div>
+            <button type="submit" class="btn btn-warning">Güncelle</button>
+        </form>
+    </div>
+</body>
+</html>

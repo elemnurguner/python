@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ürün Satış Grafiği</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 class="text-center">Ürün Satış Grafiği</h1>
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <canvas id="salesChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Özel JS -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Flask'tan verileri çek
+      fetch("/veriler")
+        .then(response => response.json())
+        .then(data => {
+          const ctx = document.getElementById('salesChart').getContext('2d');
+          const salesChart = new Chart(ctx, {
+            type: 'bar', // Çubuk grafik
+            data: {
+              labels: data.aylar, // Aylar
+              datasets: [{
+                label: 'Ürün Satışları',
+                data: data.satislar, // Satış verileri
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          });
+        });
+    });
+  </script>
+
+  <!-- Bootstrap JS ve Popper.js -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

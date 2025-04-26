@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personel Güncelle</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Personel Güncelle</h1>
+        <form method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="ad">Ad</label>
+                <input type="text" class="form-control" id="ad" name="ad" value="{{ personel.ad }}" required>
+            </div>
+            <div class="form-group">
+                <label for="soyad">Soyad</label>
+                <input type="text" class="form-control" id="soyad" name="soyad" value="{{ personel.soyad }}" required>
+            </div>
+            <div class="form-group">
+                <label for="departman">Departman</label>
+                <input type="text" class="form-control" id="departman" name="departman" value="{{ personel.departman }}" required>
+            </div>
+            <div class="form-group">
+                <label for="maas">Maaş</label>
+                <input type="number" step="0.01" class="form-control" id="maas" name="maas" value="{{ personel.maas }}" required>
+            </div>
+            <div class="form-group">
+                <label for="resim">Resim</label>
+                <input type="file" class="form-control" id="resim" name="resim">
+                {% if personel.resim %}
+                <small>Mevcut Resim: {{ personel.resim }}</small>
+                {% endif %}
+            </div>
+            <button type="submit" class="btn btn-warning">Güncelle</button>
+        </form>
+    </div>
+</body>
+</html>

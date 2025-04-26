@@ -1,0 +1,23 @@
+flask: Web uygulaması oluşturmak için kullanılan Python framework'üdür.
+
+Flask: Uygulama nesnesini oluşturur.
+
+render_template: HTML şablonlarını render etmek için kullanılır.
+
+request: Kullanıcıdan gelen form verilerini almak için kullanılır.
+
+redirect: Kullanıcıyı başka bir sayfaya yönlendirmek için kullanılır.
+
+url_for: URL'leri dinamik olarak oluşturmak için kullanılır.
+
+flash: Kullanıcıya geri bildirim mesajları göstermek için kullanılır.
+
+smtplib: E-posta göndermek için kullanılan Python kütüphanesidir.
+
+SMTP (Simple Mail Transfer Protocol) sunucusuna bağlanarak e-posta göndermeyi sağlar.
+
+email.mime.text ve email.mime.multipart: E-posta içeriğini oluşturmak için kullanılan kütüphanelerdir.
+
+MIMEText: Metin tabanlı e-posta içeriği oluşturur.
+
+MIMEMultipart: Birden fazla parçadan oluşan e-posta içeriği oluşturur (örneğin, HTML içerik).

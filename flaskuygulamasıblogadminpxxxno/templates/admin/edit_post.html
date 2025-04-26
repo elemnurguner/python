@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Kullanıcıyı Düzenle</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <div class="form-group mb-3">
+            {{ form.username.label }}
+            {{ form.username(class="form-control") }}
+        </div>
+        <div class="form-group mb-3">
+            {{ form.email.label }}
+            {{ form.email(class="form-control") }}
+        </div>
+        <div class="form-group mb-3">
+            {{ form.password.label }}
+            {{ form.password(class="form-control") }}
+        </div>
+        <div class="form-group mb-3">
+            {{ form.profile_picture.label }}
+            {{ form.profile_picture(class="form-control") }}
+        </div>
+        {% if user.profile_picture %}
+            <div class="mb-3">
+                <img src="{{ url_for('static', filename='uploads/' + user.profile_picture) }}" alt="Profil Resmi" class="img-thumbnail" width="100">
+            </div>
+        {% endif %}
+        <button type="submit" class="btn btn-primary">Güncelle</button>
+    </form>
+{% endblock %}

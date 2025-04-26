@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kayıt Ol ve Giriş Yap</title>
+</head>
+<body>
+    <h1>Kayıt Ol</h1>
+    <form id="registerForm">
+        <label for="regUsername">Kullanıcı Adı:</label>
+        <input type="text" id="regUsername" name="regUsername" required>
+        <br>
+        <label for="regPassword">Şifre:</label>
+        <input type="password" id="regPassword" name="regPassword" required>
+        <br>
+        <button type="submit">Kayıt Ol</button>
+    </form>
+
+    <h1>Giriş Yap</h1>
+    <form id="loginForm">
+        <label for="loginUsername">Kullanıcı Adı:</label>
+        <input type="text" id="loginUsername" name="loginUsername" required>
+        <br>
+        <label for="loginPassword">Şifre:</label>
+        <input type="password" id="loginPassword" name="loginPassword" required>
+        <br>
+        <button type="submit">Giriş Yap</button>
+    </form>
+
+    <p id="message"></p>
+
+    <script src="auth.js"></script>
+</body>
+</html>

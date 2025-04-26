@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dondurma Satış Tahmini</title>
+</head>
+<body>
+    <h1>Dondurma Satış Tahmini 🍦</h1>
+    
+    <input type="number" id="temperature" placeholder="Sıcaklık (℃)">
+    <button onclick="predict()">Tahmin Et</button>
+
+    <script>
+        function predict() {
+            const temperature = document.getElementById('temperature').value;
+            
+            // API'ye istek gönder
+            fetch('/predict', {  // Sadece '/predict' yazıyoruz (localhost otomatik eklenir)
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ temperature: temperature })
+            })
+            .then(response => {
+                if (!response.ok) throw new Error('Hata: ' + response.status);
+                return response.json();
+            })
+            .then(data => {
+                alert(`Tahmini Satış (${data.temperature}℃): ${data.predicted_sales} birim`);
+            })
+            .catch(error => {
+                alert('Hata: ' + error.message);
+            });
+        }
+    </script>
+</body>
+</html>

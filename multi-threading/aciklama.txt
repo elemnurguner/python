@@ -1,0 +1,32 @@
+Kodun Adım Adım Açıklaması:
+1-Sipariş Kuyruğu (queue.Queue):
+
+Siparişlerin tutulduğu bir kuyruk oluşturduk. Bu kuyruk, sipariş alan ve sipariş hazırlayan thread'ler arasında veri paylaşımını sağlar.
+
+queue.Queue thread-safe bir yapıdır, yani birden fazla thread aynı kuyruğa eriştiğinde veri tutarlılığı sorunu yaşanmaz.
+
+2-Sipariş Alan Fonksiyon (siparis_al):
+
+Bu fonksiyon, 1'den 5'e kadar sipariş alır.
+
+Her siparişi siparis_kuyrugu.put() ile kuyruğa ekler.
+
+Her sipariş alımı 1 saniye sürer (time.sleep(1)).
+
+3-Sipariş Hazırlayan Fonksiyon (siparis_hazirla):
+
+Bu fonksiyon, kuyrukta sipariş olduğu sürece çalışır.
+
+siparis_kuyrugu.get() ile kuyruktan bir sipariş alır.
+
+Siparişi hazırlamak 2 saniye sürer (time.sleep(2)).
+
+Sipariş hazırlandığında task_done() ile kuyruğa bildirim yapar.
+
+4-Thread'lerin Oluşturulması ve Başlatılması:
+
+threading.Thread ile iki thread oluşturulur: biri sipariş alan, diğeri sipariş hazırlayan.
+
+start() metodu ile thread'ler başlatılır.
+
+join() metodu ile ana program, thread'lerin bitmesini bekler.

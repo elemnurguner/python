@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Kullanıcı adını ve soyadını göster -->
+        <h1 class="mt-5">Hoş geldiniz, {{ session['first_name'] }} {{ session['last_name'] }}!</h1>
+        
+        <!-- Çıkış yap butonu -->
+        <a href="{{ url_for('logout') }}" class="btn btn-danger mb-3">Çıkış Yap</a>
+        
+        <!-- Sepete Git butonu -->
+        <a href="{{ url_for('cart') }}" class="btn btn-success mb-3">Sepeti Görüntüle</a>
+         
+        <!-- yeni ürün ekle  -->
+        <a href="{{ url_for('add_product') }}" class="btn btn-success mb-3">Yeni Ürün Ekle</a>
+        <!-- Ürünler -->
+        <h2>Ürünler</h2>
+        {% if products %}
+            <div class="row">
+                {% for product in products %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ product.ProductName }}</h5>
+                            <p class="card-text">Fiyat: {{ product.Price }} TL</p>
+                            <p class="card-text">Stok: {{ product.Stock }}</p>
+                                <!-- Sepete ekleme formu -->
+                                {% comment %} Form, POST metodu ile action kısmında belirtilen URL'ye (/add_to_cart/<product_id>) gönderilir.
+                                 add_to_cart kısmı gondericiğim route 
+                                 url_for('add_to_cart', product_id=product.ProductID) ifadesi, şu şekilde bir URL oluşturur:
+                                            Örneğin, product.ProductID = 5 ise, URL şu olur: /add_to_cart/5.
+                                            roduct.ProductI bu kısım db deki kısım product_id ise sessionda tutulan kısım {% endcomment %}
+                            <form method="POST" action="{{ url_for('add_to_cart', product_id=product.ProductID) }}">
+                                <div class="form-group">
+                                      <!-- Miktar seçimi için input alanı -->
+                                    <input type="number" name="quantity" min="1" max="{{ product.Stock }}" class="form-control" required>
+                                </div>
+                                   <!-- Sepete ekle butonu -->
+                                <button type="submit" class="btn btn-primary">Sepete Ekle</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}   <!-- Eğer ürün yoksa gösterilen uyarı mesajı -->
+            <div class="alert alert-warning">
+                Henüz hiç ürün bulunmamaktadır.
+            </div><!-- Ürün ekleme butonu -->
+            <a href="{{ url_for('add_product') }}" class="btn btn-primary">Ürün Ekle</a>
+        {% endif %}
+    </div>
+</body>
+</html>

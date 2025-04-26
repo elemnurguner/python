@@ -1,0 +1,38 @@
+SELECT Products.ProductID, Products.ProductName, Cart.Quantity, Products.Price 
+FROM Cart 
+JOIN Products ON Cart.ProductID = Products.ProductID 
+WHERE Cart.UserID = ?
+Sorgunun Parçaları:
+SELECT Kısmı:
+
+Hangi sütunların (bilgilerin) getirileceğini belirtir.
+
+Products.ProductID: Ürünün ID'si.
+
+Products.ProductName: Ürünün adı.
+
+Cart.Quantity: Sepetteki ürün miktarı.
+
+Products.Price: Ürünün fiyatı.
+
+FROM Cart Kısmı:
+
+Sorgunun temel tablosu Cart (Sepet) tablosudur.
+
+Bu tablo, kullanıcının sepetindeki ürünleri tutar.
+
+JOIN Products ON Cart.ProductID = Products.ProductID Kısmı:
+
+Cart tablosu ile Products tablosunu birleştirir (JOIN).
+
+Birleştirme işlemi, Cart tablosundaki ProductID ile Products tablosundaki ProductID eşleştirilerek yapılır.
+
+Bu sayede, Cart tablosundaki ürün ID'leri (ProductID) kullanılarak, Products tablosundan ürün bilgileri (adı, fiyatı vb.) alınır.
+
+WHERE Cart.UserID = ? Kısmı:
+
+Sorgu, yalnızca belirli bir kullanıcıya ait sepet kayıtlarını getirir.
+
+? işareti, sorguya dinamik olarak verilen user_id değerini temsil eder.
+
+Örneğin, user_id = 123 ise, yalnızca Cart tablosunda UserID = 123 olan kayıtlar getirilir.

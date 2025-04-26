@@ -1,0 +1,47 @@
+CREATE DATABASE TestDB;
+USE TestDB;
+
+CREATE TABLE Users (
+    UserID INT PRIMARY KEY IDENTITY(1,1),
+    FirstName NVARCHAR(50) NOT NULL,
+    LastName NVARCHAR(50) NOT NULL,
+    Email NVARCHAR(100) NOT NULL,
+    Password NVARCHAR(100) NOT NULL,  -- Şifre için
+    Role NVARCHAR(20) NOT NULL        -- Kullanıcı rolü (admin/user)
+);
+
+CREATE TABLE Products (
+    ProductID INT PRIMARY KEY IDENTITY(1,1),
+    ProductName NVARCHAR(100) NOT NULL,
+    Price DECIMAL(10, 2) NOT NULL,
+    Stock INT NOT NULL,
+    Description NVARCHAR(255)         -- Ürün açıklaması
+);
+CREATE TABLE Cart (
+    CartID INT PRIMARY KEY IDENTITY(1,1),
+    UserID INT FOREIGN KEY REFERENCES Users(UserID),
+    ProductID INT FOREIGN KEY REFERENCES Products(ProductID),
+    Quantity INT NOT NULL
+);
+
+CREATE TABLE Orders (
+    OrderID INT PRIMARY KEY IDENTITY(1,1),
+    UserID INT FOREIGN KEY REFERENCES Users(UserID),
+    OrderDate DATETIME DEFAULT GETDATE(),
+    TotalAmount DECIMAL(10, 2) NOT NULL
+);
+
+CREATE TABLE OrderDetails (
+    OrderDetailID INT PRIMARY KEY IDENTITY(1,1),
+    OrderID INT FOREIGN KEY REFERENCES Orders(OrderID),
+    ProductID INT FOREIGN KEY REFERENCES Products(ProductID),
+    Quantity INT NOT NULL,
+    Price DECIMAL(10, 2) NOT NULL
+);
+-- Kullanıcı ekle
+INSERT INTO Users (FirstName, LastName, Email, Password, Role) 
+VALUES ('Ahmet', 'Yılmaz', 'ahmet@example.com', '1234', 'user');
+
+-- Ürün ekle
+INSERT INTO Products (ProductName, Price, Stock, Description) 
+VALUES ('Laptop', 15000.00, 10, 'Yüksek performanslı laptop');

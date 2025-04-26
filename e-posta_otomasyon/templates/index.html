@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-posta Gönder</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .flash-message { padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .success { background-color: #d4edda; color: #155724; }
+        .error { background-color: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+    <h1>E-posta Gönder</h1>
+
+    <!-- Flash mesajları -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash-message {{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <!-- E-posta gönderme formu -->
+    <form method="POST">
+        <label for="alıcı_email">Alıcı E-posta:</label><br>
+        <input type="email" id="alıcı_email" name="alıcı_email" required><br><br>
+
+        <label for="konu">Konu:</label><br>
+        <input type="text" id="konu" name="konu" required><br><br>
+
+        <label for="mesaj">Mesaj:</label><br>
+        <textarea id="mesaj" name="mesaj" rows="5" required></textarea><br><br>
+
+        <button type="submit">Gönder</button>
+    </form>
+</body>
+</html>
