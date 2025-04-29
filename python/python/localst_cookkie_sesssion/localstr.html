@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Local Storage Örneği</title>
+</head>
+<body>
+    <h1>Local Storage Örneği</h1>
+    <input type="text" id="veri" placeholder="Bir şeyler yazın">
+    <button onclick="veriyiKaydet()">Kaydet</button>
+    <button onclick="veriyiGoster()">Göster</button>
+    <p id="goster"></p>
+
+    <script>
+        function veriyiKaydet() {
+            const veri = document.getElementById('veri').value;
+            localStorage.setItem('kayitliVeri', veri);
+            alert('Veri kaydedildi!');
+        }
+
+        function veriyiGoster() {
+            const veri = localStorage.getItem('kayitliVeri');
+            document.getElementById('goster').innerText = veri || 'Kayıtlı veri yok.';
+        }
+    </script>
+</body>
+</html>

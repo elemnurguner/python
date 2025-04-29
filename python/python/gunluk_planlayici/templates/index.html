@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Günlük Planlayıcı</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h1 class="card-title text-center">Günlük Planlayıcı</h1>
+            </div>
+            <div class="card-body">
+                <!-- Görev Ekleme Formu -->
+                <form action="/add" method="POST" class="mb-4">
+                    <div class="input-group">
+                        <input type="text" name="task" class="form-control" placeholder="Yeni görev ekle" required>
+                        <button type="submit" class="btn btn-primary">Ekle</button>
+                    </div>
+                </form>
+
+                <!-- Görev Listesi -->
+                <ul class="list-group">
+                    {% for task in tasks %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span>
+                            {% if task.completed %}
+                            <span class="badge bg-success me-2">✓</span>
+                            {% else %}
+                            <span class="badge bg-danger me-2">✗</span>
+                            {% endif %}
+                            {{ task.task }}
+                        </span>
+                        <a href="{{ url_for('complete', task_id=loop.index0) }}" class="btn btn-sm btn-outline-primary">Tamamla</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS ve Popper.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

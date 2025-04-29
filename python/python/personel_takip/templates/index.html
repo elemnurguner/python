@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personel Listesi</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Personel Listesi</h1>
+        <a href="{{ url_for('ekle') }}" class="btn btn-primary mb-3">Yeni Personel Ekle</a>
+        
+        <!-- Departman Filtresi -->
+        <form method="GET" class="mb-3">
+            <div class="form-group">
+                        <label for="departman">Departman Filtresi</label>
+                        <!-- index.html (Departman Filtresi) -->
+        <select class="form-control" id="departman" name="departman" onchange="this.form.submit()">
+            <option value="Tüm Departmanlar">Tüm Departmanlar</option>
+            {% for departman in departmanlar %}
+            <option value="{{ departman }}">{{ departman }}</option>
+            {% endfor %}
+        </select>
+            </div>
+        </form>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Ad</th>
+                    <th>Soyad</th>
+                    <th>Departman</th>
+                    <th>Maaş</th>
+                    <th>Resim</th>
+                    <th>İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for personel in personeller %}
+                <tr>
+                    <td>{{ personel.id }}</td>
+                    <td>{{ personel.ad }}</td>
+                    <td>{{ personel.soyad }}</td>
+                    <td>{{ personel.departman }}</td>
+                    <td>{{ personel.maas }}</td>
+                    <td>
+                        {% if personel.resim %}
+                        <img src="{{ url_for('uploaded_file', filename=personel.resim) }}" width="50" height="50">
+                        {% else %}
+                        Resim Yok
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{{ url_for('guncelle', id=personel.id) }}" class="btn btn-warning btn-sm">Güncelle</a>
+                        <a href="{{ url_for('sil', id=personel.id) }}" class="btn btn-danger btn-sm">Sil</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

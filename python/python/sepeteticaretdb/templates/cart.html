@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sepet</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">{{ session['first_name'] }} {{ session['last_name'] }}'nin Sepeti</h1>
+        
+        <!-- Sepetteki ürünler -->
+        <div class="row">
+            {% for item in cart_items %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item.ProductName }}</h5>
+                        <p class="card-text">Adet: {{ item.Quantity }}</p>
+                        <p class="card-text">Fiyat: {{ item.Price }} TL</p>
+                        <p class="card-text">Toplam: {{ item.Quantity * item.Price }} TL</p>
+                        <!-- Çıkar butonu -->
+                        <a href="{{ url_for('remove_from_cart', product_id=item.ProductID) }}" class="btn btn-danger">Çıkar</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <!-- Dashboard'a geri dön butonu -->
+        <a href="{{ url_for('dashboard') }}" class="btn btn-primary">Ürünlere Geri Dön</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,8 @@
+OpenWeatherMap Ücretsiz API Anahtarı Alma
+OpenWeatherMap sitesine gidin.
+
+Kaydolun (Sign Up) veya giriş yapın (Login).
+
+Giriş yaptıktan sonra, "API Keys" bölümüne gidin.
+
+Burada yeni bir API anahtarı oluşturabilirsiniz. Bu anahtar, API'ye erişmek için kullanılacak.

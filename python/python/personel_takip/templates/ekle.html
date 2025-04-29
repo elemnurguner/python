@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yeni Personel Ekle</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Yeni Personel Ekle</h1>
+        <form method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="ad">Ad</label>
+                <input type="text" class="form-control" id="ad" name="ad" required>
+            </div>
+            <div class="form-group">
+                <label for="soyad">Soyad</label>
+                <input type="text" class="form-control" id="soyad" name="soyad" required>
+            </div>
+            <div class="form-group">
+                <label for="departman">Departman</label>
+               <!-- ekle.html (Departman Seçimi) -->
+            <select class="form-control" id="departman" name="departman" required>
+                {% for departman in departmanlar %}
+                <option value="{{ departman }}">{{ departman }}</option>
+                {% endfor %}
+            </select>
+            </div>
+            <div class="form-group">
+                <label for="maas">Maaş</label>
+                <input type="number" step="0.01" class="form-control" id="maas" name="maas" required>
+            </div>
+            <div class="form-group">
+                <label for="resim">Resim</label>
+                <input type="file" class="form-control" id="resim" name="resim">
+            </div>
+            <button type="submit" class="btn btn-primary">Kaydet</button>
+        </form>
+    </div>
+</body>
+</html>

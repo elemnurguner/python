@@ -1,0 +1,20 @@
+{
+    "isim": "Ahmet",
+    "yas": 30,
+    "meslek": "Mühendis",
+    "beceriler": [
+        "Python",
+        "JavaScript",
+        "SQL"
+    ],
+    "projeler": [
+        {
+            "isim": "Proje 1",
+            "durum": "Tamamlandı"
+        },
+        {
+            "isim": "Proje 2",
+            "durum": "Devam Ediyor"
+        }
+    ]
+}
